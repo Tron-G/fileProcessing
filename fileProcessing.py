@@ -17,9 +17,7 @@ class FileProcessing:
             self.__read_folder = ""
         if save_folder != "":
             self.__save_folder = save_folder
-            folder = os.path.exists(self.__save_folder)
-            if not folder:  # 判断是否存在文件夹如果不存在则创建为文件夹
-                os.makedirs(self.__save_folder)  # makedirs 创建文件时如果路径不存在会创建这个路径
+            self.check_folder_exist(self.__save_folder)
         else:
             self.__save_folder = ""
 
@@ -103,6 +101,12 @@ class FileProcessing:
             new_data = data[-length:]
             new_data = new_data.reset_index(drop=True)
             return new_data
+
+    def check_folder_exist(self, path):
+        folder = os.path.exists(path)
+        if not folder:  # 判断是否存在文件夹如果不存在则创建为文件夹
+            os.makedirs(path)  # makedirs 创建文件时如果路径不存在会创建这个路径
+        pass
 
 
 # def data_cut():
